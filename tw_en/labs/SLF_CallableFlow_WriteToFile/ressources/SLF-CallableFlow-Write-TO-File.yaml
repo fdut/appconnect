@@ -1,0 +1,109 @@
+$integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: trigger-action
+  trigger-interfaces:
+    trigger-interface-1:
+      connector-type: salesforce
+      type: event-trigger
+      triggers:
+        CREATED:
+          input-context:
+            data: Lead
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          options: {}
+      account-name: Account 1
+  action-interfaces:
+    action-interface-1:
+      type: api-action
+      business-object: request
+      connector-type: iiboc
+      account-name: Account 1
+      actions:
+        INVOKEACTION: {}
+    action-interface-2:
+      type: api-action
+      business-object: Lead
+      connector-type: salesforce
+      account-name: Account 1
+      actions:
+        UPDATEALL: {}
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - custom-action:
+              name: Callable flow Invoke
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-1'
+              action: INVOKEACTION
+              map:
+                mappings:
+                  - Application:
+                      template: WriteToFile
+                  - Endpoint:
+                      template: WRITE_TO_FILE
+                  - localEnvironment:
+                      mappings:
+                        - DirectoryName:
+                            template: /tmp/fileout
+                        - FileName:
+                            template: demo1.txt
+                  - message:
+                      mappings:
+                        - Compagny:
+                            template: '{{$Trigger.Company}}'
+                        - Email:
+                            template: '{{$Trigger.Email}}'
+                        - FirstName:
+                            template: '{{$Trigger.FirstName}}'
+                        - LastName:
+                            template: '{{$Trigger.LastName}}'
+                customSchemas:
+                  properties.`localEnvironment`:
+                    type: object
+                    properties:
+                      FileName:
+                        type: string
+                      DirectoryName:
+                        type: string
+                  properties.`message`:
+                    type: object
+                    properties:
+                      FirstName:
+                        type: string
+                      LastName:
+                        type: string
+                      Compagny:
+                        type: string
+                      Email:
+                        type: string
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+          - update-action:
+              name: Salesforce Update lead
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-2'
+              map:
+                mappings:
+                  - Description:
+                      template: 'Main lead Id : {{$CallableflowInvoke.localEnvironment}}'
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: CallableflowInvoke
+                    $ref: '#/node-output/Callable flow Invoke/response/payload'
+              filter:
+                where:
+                  Id: '{{$Trigger.Id}}'
+                input:
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: CallableflowInvoke
+                    $ref: '#/node-output/Callable flow Invoke/response/payload'
+              allow-empty-output: false
+  name: SLF-CallableFlow-Write-TO-File
+models: {}
