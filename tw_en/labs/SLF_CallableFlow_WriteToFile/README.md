@@ -102,7 +102,7 @@ When you’ve checked everything in the flow (including changing the directory a
 Then click Dashboard to exit the flow. The flow is now running and ready to be triggered by a new lead in Salesforce.
 
 
-## Finally, test your flow:
+## Finally, test your flow
 
 - Create a new Salesforce lead:
 
@@ -129,6 +129,8 @@ Company  | ACME
 - Check the description in the Lead in Salesforce is updated with information about file creation
 
 ![](./img/updatelead.png)
+
+The video below show all steps :
 
 ![](./img/createlead.gif)
  
