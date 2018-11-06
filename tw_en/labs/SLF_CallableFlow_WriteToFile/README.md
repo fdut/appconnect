@@ -48,7 +48,7 @@ If all id OK, you have a new entry in the list :
 
 ![](./img/import-callableflow-writetofile.png)
 
-### (Optionnal) Set MQSI root directory environment variable
+### (Optionnal) Set MQSI file root directory environment variable
 
 > 
 Set Root Directory environment variable : MQSI_FILENODES_ROOT_DIRECTORY

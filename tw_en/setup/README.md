@@ -16,7 +16,7 @@
 
     ![](./img/confirmed.png)
 
-## Set up your IBM Cloud Organization
+### Set up your IBM Cloud Organization
 
 1. You will be prompted to **Create organization**. Enter an organization name (notice that there are suggestions for you). Also select an appropriate region. Then press the`Create` button.
 
@@ -28,105 +28,41 @@
 
    ![](./img/im-ready.png)
 
-## Browse the Bluemix Catalog and Attach the AppConnect Service
+### Browse the Bluemix Catalog and create an App Connect Service
 
 1.  In the top right-hand corner of the screen, select the `Catalog` button to browse the list of available Bluemix offerings.
 
     ![](./img/bmx-catalog.png)
 
-1.  Once in the catalog, you can search for the API Connect service by entering in `API Connect` in the search box next to the magnifying glass icon. Click on the `API Connect` Icon to install a new instance of API Connect into your Bluemix space.
+1.  Once in the catalog, you can search for the App Connect service by entering in `App Connect` in the search box next to the magnifying glass icon. Click on the `App Connect` Icon to install a new instance of App Connect into your Bluemix space.
 
-    ![](./img/apic-service.png)
+    ![](./img/appconnect-service.png)
 
 1.  You can read through some of the details about the service. Select the Lite pricing plan and click on the `Create button.
 
     ![](./img/planlite.png)
 
-1.  Once the API Connect service is attached to your account, you will be automatically launched into the API Drafts screen.
+1.  Once the App Connect service is attached to your account, you will be able to launch the APP Connect dashboard.
 
-## Download IBM App Connect Enterprise
 
-https://developer.ibm.com/integration/docs/app-connect-enterprise/get-started/
 
-## Configuring an integration server by using CLI
+ 
+## Creating a Salesforce.com Developer Account
 
-- Create a node using:
+### Setting up an account
 
-**mqsicreatebroker TESTNODE**
+1. Using a web browser go to the URL: http://developer.salesforce.com and click ‘Sign up’.
 
-```
-BIP8071I: Successful command completion.
-```
 
-- Verify the node using:
+2. Fill out the form details and submit. You will need a valid email address and you will need to be able to access the email. 
 
-**mqsicvp TESTNODE**
+3. Sign into your email account.
 
-```
-BIP8873I: Starting the component verification for component 'TESTNODE'.
-BIP8876I: Starting the environment verification for component 'TESTNODE'.
-BIP8894I: Verification passed for 'Registry'.
-BIP8894I: Verification passed for 'MQSI_REGISTRY'.
-BIP8894I: Verification passed for 'Java Version - 1.8.0 IBM Linux build 8.0.5.15 - pxa6480sr5fp15-20180502_01(SR5 FP15)
-BIP8894I: Verification passed for 'MQSI_FILEPATH'.
-BIP8878I: The environment verification for component 'TESTNODE' has finished successfully.
-BIP8882I: Starting the WebSphere MQ verification for component 'TESTNODE'.
-BIP8294I: ODBC environment verification was skipped because the ODBCINI environment variable is not set.
-BIP8874I: The component verification for 'TESTNODE' has finished successfully.
-BIP8071I: Successful command completion.
-```
+4. You will have received an email from Salesforce.com. Access the one with the subject 'Salesforce.com login confirmation' and follow the link to confirm the account setup.
 
-- Start the node using:
+5. Enter a password of your choice.
 
-**mqsistart TESTNODE**
+You now have access to the developer account. Verify the sample data using the following steps.
 
-```
-BIP8096I: Successful command initiation, check the system log to ensure that the component started without problem and that it continues to run without problem.
-```
+6. 	In your browser, return to http://developer.salesforce.com and Log into your developer account by clicking the Login button
 
-- List all nodes using:
-
-**mqsilist**
-
-```
-BIP1325I: Integration node 'TESTNODE' with administration URI 'http://localhost:4470' is running.
-BIP8071I: Successful command completion.
-```
-
-- Create a server on the node using:
-
-**mqsicreateexecutiongroup TESTNODE -e TESTSERVER -w 99**
-
-```
-BIP1124I: Creating integration server 'TESTSERVER' on integration node 'TESTNODE'...
-BIP1117I: The integration server was created successfully.
-
-The integration node has initialized the integration server.
-BIP8071I: Successful command completion.
-```
-
-- List the server status using:
-
-**mqsilist TESTNODE**
-
-```
-BIP1286I: Integration server 'default' on integration node 'TESTNODE' is running.
-BIP8071I: Successful command completion.
-```
-
-## Import Callable flow WriteToFile
-
--> IBM AppConnect > Manage Callable Flow > Connect Callable flow
-
-Clic on button 'Download the Configuration' and Save file
-
-Copy the saved file (agentx.json) in the Directory C:\ProgramData\IBM\MQSI\config\TESTNODE\TESTSERVER\iibswitch\agentx
-
-And Clic on button 'Test your agent'
-
-Set Root Directory : MQSI_FILENODES_ROOT_DIRECTORY
-
-Control Panel > System > Advanced System Settings > Environment Variables (button) > New System Variable
-
-Variable name : MQSI_FILENODES_ROOT_DIRECTORY
-Variable value : C:\Output
