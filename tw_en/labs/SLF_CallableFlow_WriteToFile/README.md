@@ -1,4 +1,26 @@
+
+
+## About this tutorial
+
+Your company is starting to use Salesforce for its Sales reps to record customer leads that they find. 
+
+In the past, all customer-related sales information has been stored in an on-premises custom sales application. 
+
+The on-premises system still needs to have a record of all the leads found by the sales reps, but they don’t want to have to enter the data in both systems. 
+
+In time, the Salesforce system will take over more and more of the on-premises application processing but for now, both applications need the lead information. 
+
+Integrating these two systems requires a hybrid integration approach where some of the integration function runs in the cloud and some must run on premises. 
+
+App Connect Enterprise provides exactly this capability, being able to split the integration seamlessly between the cloud and on-premises system, without the need to define special interfaces or expose the on-premises system directly to the public internet.
+
+
+![](./img/diagram.jpg)
+
+In this tutorial you learn how to use IBM App Connect Enterprise to create an event-driven flow that creates a lead in an on-premises sales system with a file-based interface whenever a lead is created in Salesforce.
+
 ## Import WriteToFile project in App Connect Toolkit
+
 
 - Open App Connect Enterprise Toolkit. Clic on App Connect Enterprise Toolkit icon
 
@@ -31,12 +53,20 @@ Go back in App Connect Designer in IBM Cloud
 
 In IBM AppConnect menu > Manage Callable Flow > Connect Callable flow
 
-Clic on button `Download the Configuration` and Save file
+- Clic on button `Download the Configuration` and Save file
 
-Copy the saved file (agentx.json) in the Directory C:\ProgramData\IBM\MQSI\config\TESTNODE\TESTSERVER\iibswitch\agentx  of your "On Premise" App Connect component.
+- Copy the saved file (agentx.json) in the Directory 
+
+```C:\ProgramData\IBM\MQSI\config\TESTNODE\TESTSERVER\iibswitch\agentx  of your "On Premise" App Connect component.
+```
 
 ![](./img/importcallableflow.gif)
 
+- Stop and start the TESTSERVER
+
+![](./img/stoptestserver.png)
+
+![](./img/starttestserver.png)
 
 And Clic on button `Test your agent`
 
@@ -81,7 +111,16 @@ Set Root Directory environment variable : MQSI_FILENODES_ROOT_DIRECTORY
 
 - Customize Callable Flow action
 
+FileName
+DirectoryName
+
 ![](./img/customizecallableflow.gif)
+
+FirstName
+LastName
+Company
+Email
+
 ![](./img/customizecallableflow2.gif)
 
 - At the end the result will be something like that
