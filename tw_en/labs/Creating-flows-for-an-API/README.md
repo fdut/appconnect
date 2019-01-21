@@ -2,7 +2,9 @@
 
 A flow for an API contains a request, one or more target application actions, and a response for an API operation. The flow is triggered by calling the API operation such as from mobile and web applications.
 
-If you want a developer to be able to create an app that makes use of the data in your applications, you can provide an API. For example, you might provide an API that can create, retrieve, and update customers in your CRM system. Defining the API involves the following steps:
+If you want a developer to be able to create an app that makes use of the data in your applications, you can provide an API.
+
+For example, you might provide an API that can create, retrieve, and update customers in your CRM system. Defining the API involves the following steps:
 
 1. You create one or more models that define the structure of the objects that you want to create or retrieve.
 
@@ -28,11 +30,13 @@ The following steps describe how to create a flow for an API in App Connect to c
 
 3. In the Model name field, you need to enter a name for your model that reflects the type of object that your API will work with.
 
-The API flow that we are going to create will create a customer in Salesforce. So, in the Model name field, type Customer.
+The API flow that we are going to create will create a customer in Salesforce. So, in the Model name field, type **Customer**
 
-4. Click Create model. The Customer model panel is displayed.
+4. Click **Create model**. The Customer model panel is displayed.
 
-This panel contains 2 tabs; a Properties tab and an Operations tab. First we’re going to work with the Properties tab. Properties are required to define the structure of the object that the API will work with.
+This panel contains 2 tabs; a **Properties** tab and an **Operations** tab. First we’re going to work with the Properties tab. 
+
+Properties are required to define the structure of the object that the API will work with.
 
 5. Our API will create, update, and retrieve a customer so we’re going to use the following properties to identify customers.
 
@@ -67,11 +71,12 @@ To define how the API will interact with the object, click **Operations**. You c
 * Retrieve an object by using its unique ID.
 * Update or create an object, where the object is updated if it exists, or created if it doesn’t.
 
-1. Add the **Create Customer operation** to the Customer model. (Click the field “Select an operation to add”, and then select **Create Customer**.)
+1. Add the **Create Customer operation** to the Customer model. (Click the field `“Select an operation to add”`, and then select **Create Customer**.)
 
 ![](./img/api_flow_create_customer.png)
 
 **Info**: You can define your own operations, by clicking Add a custom operation. Note the following restrictions if you decide to use this option:
+
 * The operation name can’t be a keyword.
 * The operation name can’t be one of the following keywords: create, updateOrCreate, all, updateAttributes, update, updateAll, upsertWithWhere, replaceOrCreate, replaceById, destroy, destroyAll, executeAssembly.
 * The query parameter can’t be the same as the model ID.
@@ -86,9 +91,9 @@ Next, we’re going to create a flow that defines how the **Create Customer** op
 
 1. To add the target application to the flow, click (+).
 
-2. Select Salesforce > Contact > Create contact. (If you haven’t already connected App Connect to Salesforce, specify the name and password of your Salesforce account.)
+2. Select `Salesforce > Contact > Create contact`. (If you haven’t already connected App Connect to Salesforce, specify the name and password of your Salesforce account.)
 
-3. Map the fields from the request into ‘Salesforce / Create contact’ as follows:
+3. Map the fields from the request into `‘Salesforce / Create contact’` as follows:
 	* Account ID: Click within the field and click Insert a reference Insert a reference icon. Then select CustomerID from the Available inputs list.
 	* Last Name: Type last and then select LastName from the list.
 	* First Name: Type fir and then select FirstName from the list.
@@ -98,7 +103,9 @@ Next, we’re going to create a flow that defines how the **Create Customer** op
 	
 > **Info**: You can also add some conditional logic to your flow. If you want your flow to do different things for different conditions, you can add one or more “If” nodes to your flow. For more information, see How do I add conditional logic to a flow?
 
-13. Click the **Response** in the flow to define the response that’ll be returned when the operation has completed successfully. Map the available fields from ‘Salesforce / Create contact’ to the response as follows: For the required response field ‘CustomerID’, map the Salesforce field ‘Contact ID’; optionally, map other fields to return their values in the response.
+13. Click the **Response** in the flow to define the response that’ll be returned when the operation has completed successfully. Map the available fields from `‘Salesforce / Create contact’` to the response as follows: 
+
+For the required response field **‘CustomerID’**, map the Salesforce field **‘Contact ID’**; optionally, map other fields to return their values in the response.
 
 ![](./img/api_flow_rev_response.png)
 
@@ -119,16 +126,18 @@ If you are using App Connect on IBM Cloud, you can test the flow for your API in
 
 ### Testing in the API portal
 
-1. On the Manage tab, scroll down to ‘Sharing Outside of Cloud Foundry organization’ (at the bottom of the page).
+1. On the **Manage** tab, scroll down to `‘Sharing Outside of Cloud Foundry organization’` (at the bottom of the page).
 
-2. Click Create API Key, give the API a descriptive name; for example: Customer API test, and then click Create.
+2. Click `Create API Key`, give the API a descriptive name; for example: 
+
+**Customer API test**, and then click **Create**.
 
 
 3. Copy the API key.
 
-4. Click the ‘API PORTAL LINK’ link. This opens the API in an API portal window.
+4. Click the `‘API PORTAL LINK’` link. This opens the API in an API portal window.
 
-5. To invoke your API in the API portal, click Try it.
+5. To invoke your API in the API portal, click `Try it`.
 
 6. In the ‘X-IBM-Client-ID’ field, paste the API key.
 
@@ -159,31 +168,34 @@ If you are using App Connect on IBM Cloud, you can test the flow for your API in
 	
 ### Testing in Postman
 
-In this example, we test a flow for an API that was created and started in App Connect purchased from IBM Marketplace: https://designer.appconnect.ibmcloud.com/.
+In this example, we test the previously created flow for an API in App Connect.
 
-1. To test your API, click the **Manage** tab and make note of the URL, user name, and password. We’re going to use these credentials to invoke the API operations. In this tutorial, we’re going to use *Postman*; however, you can use your preferred utility, for example, the Linux command line and *curl*, or the *HttpRequester add-on for Firefox*.
+In this tutorial, we’re going to use *Postman*; however, you can use your preferred utility, for example, the Linux command line and *curl*, or the *HttpRequester add-on for Firefox*.
+
+1. To test your API, click the **Manage** tab and make note of the **Route**, and **API key**. 
+
+We’re going to use the API key to invoke the API operations. 
 
 1. Open the Postman utility. (The following steps use Postman version 5.3.1. Some steps might differ slightly for different versions.)
 
 1. First we’re going to test the **Create Customer** operation by selecting the **POST** function in Postman.
 
-1. In the Enter request URL field, paste the API base URL that you copied earlier and append the model name /Customer to the end.
+1. In the Enter request URL field, paste the API base URL (Route) that you copied earlier and append the model name /Customer to the end.
 
 ![](./img/api_flow_postman_get_customer.gif)
 
-5. In the **Authorization** tab, change the Type to **Basic Auth**.
-
-6. Add the user name and password that you copied earlier to their respective fields.
-
-7. Click **Update Request**.
 
 8. Go to the **Headers** tab and select the following 
 key/value pairs:
-	* Key: Content-Type
-	* Value: application/json
+
+* Key: **Content-Type**
+* Value: **application/json**
 	
 ![](./img/api_flow_headers.png)
 
+
+* Key: **x-ibm-client-id**
+* Value: **f49fc113-99a4-4b59-bc04-9079865fd66c**
 
 9. Go to the **Body** tab, select **raw** and add the following text to the palette:
 
@@ -205,7 +217,8 @@ key/value pairs:
 
 12. Open Salesforce and you’ll notice that a new contact has been created.
 
-13. To manage your API, go back to the API flow in App Connect UI and click the **Manage** tab. Then click **Download API** to download your API document. Note that the file is saved as swagger.json. After you have downloaded the API, you can import it into your API management tool. We’ve provided the URL, user name, and password that your API management tool will need.
+13. To manage your API, go back to the API flow in App Connect UI and click the **Manage** tab. 
+
 
 You’ve created your API! On the App Connect dashboard, flows for APIs are identified by the API icon. You can start and stop them in the same way as any other flow. You can open an API while it’s running, but you have to stop it before you can edit it.
 

@@ -1,6 +1,5 @@
+# App Connect : Even-driven flow using an ACE callable flow
 
-
-## About this tutorial
 
 Your company is starting to use Salesforce for its Sales reps to record customer leads that they find. 
 
@@ -19,10 +18,14 @@ App Connect Enterprise provides exactly this capability, being able to split the
 
 In this tutorial you learn how to use IBM App Connect Enterprise to create an event-driven flow that creates a lead in an on-premises sales system with a file-based interface whenever a lead is created in Salesforce.
 
+![](./img/evendrivenflow.png)
+
 ## Import WriteToFile project in App Connect Toolkit
 
 
-- Open App Connect Enterprise Toolkit. Clic on App Connect Enterprise Toolkit icon
+- in the VM, open the **App Connect Enterprise Toolkit**
+
+	- Clic on App Connect Enterprise Toolkit icon
 
 - Import project named `WriteToFile` in workspace
 	- Menu > File > Import > Project Interchange > From zip file > Browse (button)
@@ -39,60 +42,52 @@ In this tutorial you learn how to use IBM App Connect Enterprise to create an ev
 ![](./img/deployprojecttonode.gif)
 
 
-## Open App Connect Web UI
+## Open App Connect Enterprise Web UI
 
 - In App Connect Toolkit 
-- Right clic on `TESTNODE` and `Start Web User Interface`
+- Right clic on **`TESTNODE`** and **`Start Web User Interface`**
 
 ![](./img/openwebui.gif)
 
 
-## Import Callable flow WriteToFile in App Connect Designer
+## Import "WriteToFile" Callable flow in App Connect Designer on IBM Cloud
 
-Go back in App Connect Designer in IBM Cloud
+- From a brower in your VM, connect to your IBM App Connect environnement in IBM Cloud
 
-In IBM AppConnect menu > Manage Callable Flow > Connect Callable flow
+	In **IBM AppConnect** **Menu > Manage Callable Flow > Connect Callable flow**
 
-- Clic on button `Download the Configuration` and Save file
+- Clic on button **`Download the Configuration`** and Save file
 
 - Copy the saved file (agentx.json) in the Directory 
 
-```C:\ProgramData\IBM\MQSI\config\TESTNODE\TESTSERVER\iibswitch\agentx  of your "On Premise" App Connect component.
-```
+	`C:\ProgramData\IBM\MQSI\config\TESTNODE\TESTSERVER\iibswitch\agentx`  of your "On Premise" App Connect component.
+
 
 ![](./img/importcallableflow.gif)
 
-- Stop and start the TESTSERVER
+- Stop the **TESTSERVER**
 
 ![](./img/stoptestserver.png)
 
+- Start the **TESTSERVER**
+
 ![](./img/starttestserver.png)
 
-And Clic on button `Test your agent`
+
+- From the brower in your App Connect Popup, Clic on button `Test your agent`
 
 ![](./img/testagent.png)
 
 - Clic on `close` button and retunr on Dashboard and Go back to the Callable flow page to refresh it.
 
-If all id OK, you have a new entry in the list :
+	If all is OK, you have a new entry in the list :
 
 ![](./img/import-callableflow-writetofile.png)
-
-### (Optionnal) Set MQSI file root directory environment variable
-
-> 
-Set Root Directory environment variable : MQSI_FILENODES_ROOT_DIRECTORY
-
-> Control Panel > System > Advanced System Settings > Environment Variables (button) > New System Variable
-
->Variable name : MQSI_FILENODES_ROOT_DIRECTORY
->
->Variable value : C:\Output
 
 
 ## Create a new Event Drive Flow
 
-- Clic on Dashboard item
+- From your App Connect environnement on IBM Cloud, Clic on Dashboard item
 
 ![](./img/godashboard.gif)
 
@@ -101,25 +96,34 @@ Set Root Directory environment variable : MQSI_FILENODES_ROOT_DIRECTORY
 ![](./img/newevent.gif)
 
 - Give a name to this new workflow
-- Add SalesForce `New Lead` action
+
+- Add **SalesForce `New Lead`** action
 
 ![](./img/addslfaction.gif)
 
 - Add Callable Flow `WriteToFile` invoke
 
+	- **Application : WriteToFile**
+	- **Endpoint : WRITE_TO_FILE**
+
 ![](./img/addcallableflow.gif)
 
 - Customize Callable Flow action
+- Add FileName and DirectoryName properties
 
-FileName
-DirectoryName
+	- **FileName** : **demo.xml**
+	- **DirectoryName** : **/fileout**
+
 
 ![](./img/customizecallableflow.gif)
 
-FirstName
-LastName
-Company
-Email
+- Add properties for content of the "On-premise" file 
+
+	- **FirstName** : **(Salesforce) First Name**
+	- **LastName** : **(Salesforce) Last Name**
+	- **Company** : **(Salesforce) Company**
+	- **Email** : **(Salesforce) Email**
+
 
 ![](./img/customizecallableflow2.gif)
 
@@ -131,6 +135,13 @@ Email
 
 	- The final action updates the new lead in Salesforce with data sent back from the called flow running in ACE. 
 	- This data is mapped out of the returned local environment from the callable flow.
+
+	Update the following values
+	
+	- (Salesforce) Lead ID  equals **(Salesforce) Lead ID**
+
+	- **(Salesforce) Description** : **LeadId: (Callableflow) LocalEnvironnement.Variables**
+
 
 ![](./img/addlaststep.gif)
 
@@ -154,6 +165,7 @@ Field | Value
 FirstName | Jean
 LastName  | DUBOIS
 Company  | ACME
+Email | jean.dubois@acme.com
 
 ![](./img/newlead.png)
 
@@ -173,3 +185,21 @@ The video below show all steps :
 
 ![](./img/createlead.gif)
  
+ Congratulation, you created successfully your first Even Driven Flow.
+ 
+# Summary
+---
+ 
+During this exercise we created and tested an Event Driven flow with "On-premise" integration
+
+
+Now you have learned the process to build a simple App Connect Flow and using an ACE callable flow to augment the input data.
+
+You can take this same process to build more complex business solutions using the wide array of applications available in IBM App Connect.
+ 
+ 
+# Resources :
+---
+
+https://developer.ibm.com/integration/docs/app-connect-enterprise/tutorials/exchange-data-cloud-saas-applications-premises-activities-using-ace-callable-flow/
+
