@@ -4,14 +4,8 @@ A flow for an API contains a request, one or more target application actions, an
 
 If you want a developer to be able to create an app that makes use of the data in your applications, you can provide an API.
 
-For example, you might provide an API that can create, retrieve, and update customers in your CRM system. Defining the API involves the following steps:
+For example, you might provide an API that can create, retrieve, and update customers in your CRM system.
 
-1. You create one or more models that define the structure of the objects that you want to create or retrieve.
-
-2. You choose the create, retrieve, or update operations to perform against each model.
-
-3. You configure a flow that implements each operation, adding one or more target applications that hold the data.
-4. 
 The following steps describe how to create a flow for an API in App Connect to create a Salesforce contact.
 
 ## First, find or create everything you need:
