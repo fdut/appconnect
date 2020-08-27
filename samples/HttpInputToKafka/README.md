@@ -97,14 +97,9 @@ We will provide these passwords to the ACE Toolkit Test Server in the commands w
 
 - Consume message with one of sample provider here : https://github.com/ibm-messaging/event-streams-samples
 
-For example with nodejs sample :
+For example with nodejs *[kafka-nodejs-console-sample](kafka-nodejs-console-samplep)* :
 
 `node /Users/fred/Workspace/Run/EventStream/event-streams-samples/kafka-nodejs-console-sample/app.js broker-0-rl0p123zxg1844h1.kafka.svc02.eu-de.eventstreams.cloud.ibm.com:9094 hmHbWpFWewEfi2oXXXXXXXXxa_dLDnsuBS /usr/local/etc/openssl/cert.pem -consumer`
-
-
-
-
-
 
 
 # Resources
