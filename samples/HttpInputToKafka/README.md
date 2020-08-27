@@ -101,6 +101,7 @@ For example with nodejs *[kafka-nodejs-console-sample](kafka-nodejs-console-samp
 
 `node /Users/fred/Workspace/Run/EventStream/event-streams-samples/kafka-nodejs-console-sample/app.js broker-0-rl0p123zxg1844h1.kafka.svc02.eu-de.eventstreams.cloud.ibm.com:9094 hmHbWpFWewEfi2oXXXXXXXXxa_dLDnsuBS /usr/local/etc/openssl/cert.pem -consumer`
 
+![Test](images/testflow.jpg)
 
 # Resources
 - Connecting App Connect Enterprise and IBM Integration Bus to IBM Event Streams :
