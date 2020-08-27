@@ -103,12 +103,13 @@ For example with nodejs *[kafka-nodejs-console-sample](kafka-nodejs-console-samp
 
 
 # Resources
-
+- Connecting App Connect Enterprise and IBM Integration Bus to IBM Event Streams :
 https://developer.ibm.com/integration/blog/2018/10/01/connecting-app-connect-enterprise-and-ibm-integration-bus-to-ibm-event-streams/
 
-To import pem certificates in jks keystore
+- To import pem certificates in jks keystore :
 https://github.com/alastairmccormack/keyutil
-Example : `java -jar keyutil-0.4.0.jar --new-keystore trustStore.jks --password password --import-pem-file escert.pem`
+
+    Example : `java -jar keyutil-0.4.0.jar --new-keystore trustStore.jks --password password --import-pem-file escert.pem`
 
 ---
 frederic dutheil - 2020
